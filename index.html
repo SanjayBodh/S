@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+* {
+  box-sizing: border-box;
+}
+#confirmPopup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+        }
+
+        #confirmPopup button {
+            margin-right: 10px;
+        }
+
+#myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
+#clickedRow {
+  margin-top: 12px;
+  font-size: 16px;
+}
+
+#myTable {
+  display: none; /* Initially hide the table */
+  border-collapse: collapse;
+  width: 100%;
+  border: 1px solid #ddd;
+  font-size: 18px;
+}
+
+#myTable th, #myTable td {
+  text-align: left;
+  padding: 12px;
+  cursor: pointer;
+background:yellow;
+width:100px;
+}
+
+#myTable tr {
+  border-bottom: 1px solid #ddd;
+}
+
+#myTable tr.header, #myTable tr:hover {
+  background-color: #333;
+}
+
+#delayDiv {
+  display: none;
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin-bottom: 12px;
+}
+a{
+background:green;
+position:relative;
+width:400px;
+padding:10px 20px;;
+font-size:16px;
+}
+</style>
+</head>
+<body>
+
+<h2>My Customers</h2>
+
+<input type="text" id="myInput" oninput="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+<div id="clickedRow"></div>
+
+<div id="delayDiv">Loading...</div>
+
+<table id="myTable">
+  <!--<tr class="header">
+    <th style="width:60%;">Name</th>
+    <th style="width:40%;">Country</th>
+  </tr>-->
+  <tr>
+   <td onclick="saveClickedRow('Kullu', 'Himachal-Pradesh')"><a href="button breacher.html" onclick="saveLink('Kullu-HimachalPradesh')">Kullu-HimachalPradesh</a></td>
+    <!--<td onclick="saveClickedRow('Alfreds Futterkiste', 'Germany')"><a href="index.html" onclick="saveLink('alfreds futterkiste-germany')">Germany</a></td>-->
+  </tr>
+  <tr>
+    <td onclick="saveClickedRow('Berglunds snabbkop', 'Sweden')"><a href="index.html" onclick="saveLink('Manali-HimachalPradesh')">Manali-HimachalPradesh</a></td>
+    <!--<td onclick="saveClickedRow('Berglunds snabbkop', 'Sweden')">Sweden</td>-->
+  </tr>
+  <tr>
+    <td onclick="saveClickedRow('Island Trading', 'UK')"><a href="index.html" onclick="saveLink('Lahaul&Spiti-HimachalPradesh')">Lahaul&Spiti-HimachalPradesh</a></td>
+    <!--<td onclick="saveClickedRow('Island Trading', 'UK')">UK</td>-->
+  </tr>
+  <!-- Add more rows as needed -->
+</table>
+ <div id="savedLinks" style="display:none;">
+        <h3>Saved Links:</h3>
+        <div id="savedLinksList"></div>
+        <button onclick="confirmDelete()">Delete All Data</button>
+    </div>
+
+    <div id="confirmPopup">
+        <p>Are you sure you want to delete all data?</p>
+        <button onclick="deleteAllData()">Yes</button>
+        <button onclick="cancelDelete()">No</button>
+    </div>
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue, delayDiv;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  delayDiv = document.getElementById("delayDiv");
+
+  // Show the delayDiv during the delay
+  delayDiv.style.display = 'block';
+
+  // Hide the table during the delay
+  table.style.display = 'none';
+
+  // Clear any existing timeout to prevent multiple delays
+  clearTimeout(window.myFunctionTimeout);
+
+  // Set a new timeout to display the table with a 2-second delay when there's input in the search field
+  if (filter) {
+    window.myFunctionTimeout = setTimeout(function() {
+      // Hide the delayDiv after 2 seconds
+      delayDiv.style.display = 'none';
+
+      // Show the table
+      table.style.display = 'table';
+    }, 500);
+  } else {
+    // Hide the delayDiv when there's no input
+    delayDiv.style.display = 'none';
+
+    // Hide the table when there's no input
+    table.style.display = 'none';
+  }
+
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+
+<!-- function saveClickedRow(name, country) {
+ <!-- // Save the clicked row data to local storage
+  <!--localStorage.setItem('clickedRowData', name + ' - ' + country);
+
+  <!--// Display the clicked row data in the div
+  <!--document.getElementById('clickedRow').textContent = localStorage.getItem('clickedRowData');
+<!--}
+</script>
+
+    <script>
+        function saveLink(linkText) {
+            // Retrieve existing saved links from localStorage
+            let savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+
+            // Add the clicked link to the savedLinks array
+            savedLinks.push(linkText);
+
+            // Save the updated array back to localStorage
+            localStorage.setItem('savedLinks', JSON.stringify(savedLinks));
+
+            // Display the saved links in the "Saved Links" div
+            displaySavedLinks();
+        }
+
+        function displaySavedLinks() {
+            // Retrieve saved links from localStorage
+            let savedLinks = JSON.parse(localStorage.getItem('savedLinks')) || [];
+
+            // Get the "Saved Links" div
+            let savedLinksDiv = document.getElementById('savedLinksList');
+
+            // Clear the existing content
+            savedLinksDiv.innerHTML = '';
+
+            // Display each saved link in a new div
+            savedLinks.forEach(function (linkText) {
+                let linkDiv = document.createElement('div');
+                linkDiv.textContent = linkText;
+                savedLinksDiv.appendChild(linkDiv);
+            });
+
+            // Display the "Saved Links" div
+            document.getElementById('savedLinks').style.display = 'block';
+        }
+
+        function confirmDelete() {
+            document.getElementById('confirmPopup').style.display = 'block';
+        }
+
+        function deleteAllData() {
+            // Remove all data from localStorage
+            localStorage.removeItem('savedLinks');
+
+            // Hide the "Saved Links" div
+            document.getElementById('savedLinks').style.display = 'none';
+
+            // Hide the confirmation popup
+            document.getElementById('confirmPopup').style.display = 'none';
+        }
+
+        function cancelDelete() {
+            // Hide the confirmation popup
+            document.getElementById('confirmPopup').style.display = 'none';
+        }
+
+        // Display saved links when the page loads
+        displaySavedLinks();
+    </script>
+
+</body>
+</html>
