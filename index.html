@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<link rel="icon" type="image" href="icon.png">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caprasimo&family=Macondo&family=Moirai+One&family=Titan+One&display=swap" rel="stylesheet">
+  <title>YETI 360</title>
+  <style>
+*{
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+input,textarea,button,select,a{
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+a:focus,a:visited,a:active{
+outline:none;
+}
+.no-select {
+    user-select: none;
+    -webkit-user-select: none; /* Safari */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+}
+html{
+scroll-behavior:smooth;
+}
+h1{
+color:white;
+position:relative;
+top:2px;
+left:10px;
+FONT-FAMILY:titan one;
+}
+p{
+font-size:30px;
+text-align:center;
+color:orange;
+}
+.text-overlay h1{
+font-size:50px;
+text-align:center;
+}
+body{
+background:white;black;
+height:auto;
+width:100%;
+overflow:auto;
+padding:0;
+margin:0;
+}
+header{
+position:fixed;
+top:0;
+width:100%;
+height:100px;
+background:rgba(0,0,0,0.7);
+display:flex;
+justify-content:space-between;
+     transition: background-color 0.3s ease;
+            z-index: 100;
+        }
+
+       
+header img{
+position:relative;
+width:100px;
+height:100px;
+backgroundgreen;
+left:50px;
+}
+.navigation{
+display:flex;
+backgroundgreen;
+right:20px;
+position:relative;
+width:200px;
+justify-content:space-between;
+padding:0 10px;
+font-size:18px;
+color:white;
+}
+.navigation h3{
+backgroundorange;
+position:relative;
+border-radius:20px;
+padding:2px 5px;
+top:10px;
+}
+       section {
+            height: auto;
+width:100%;
+backgroundwhite;
+        }
+.container {
+      position: relative;
+backgroundgreen;
+      height: 140vh; /* Set a height for the container */
+    }
+
+    .sticky-image {
+      width: 100%;
+      height: 100vh; /* Set the height of the sticky image */
+      background-image: url('first-image.jpeg'); /* Replace 'your-image-url.jpg' with the actual image URL */
+      background-size: cover;
+      background-position: center;
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    .text-overlay {
+      position: absolute;
+      bottom: 0%;
+      left: 0;
+      width: 100%;
+height:500px;
+      padding: 20px;
+      box-sizing: border-box;
+      background: linear-gradient(rgba(0,0,0,0.01),rgba(0,0,0,0.8),rgba(0,0,0,1));
+      z-index: 2;
+    }
+.text-overlay h1{
+font-size:60px;
+}
+.text-overlay p{
+font-size:40px;
+}
+
+                             /* Hamburger menu*/
+.overlay {
+  height: 0%;
+  width: 100%;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: hidden;
+  transition:all  0.5s;
+}
+
+.overlay-content {
+  position: relative;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  margin-top: 30px;
+z-index:1000;
+}
+
+.overlay a {
+  padding: 8px;
+  text-decoration: none;
+  font-size: 36px;
+  color: #fff;
+  display: block;
+  transition: 0.3s;
+}
+
+.overlay a:hover, .overlay a:focus {
+  color: #f1f1f1;
+}
+
+.overlay .closebtn {
+  position: absolute;
+  top: 20px;
+  right: 45px;
+  font-size: 60px;
+  color:white;
+}
+span{
+position:fixed;
+color:white;
+z-index:10000;
+display:none;
+font-size:30px;
+}
+
+.mythology{
+background:orange;
+width:400px;
+gap:1rem;
+justify-content:center;
+display:flex;
+}
+.mythology h1{
+font-family:macondo;
+}
+
+
+@media(max-width:768px){
+.navigation{
+display:none;
+}
+header img{
+left:0;
+height:70px;
+width:70px;
+}
+header{
+height:90px;
+}
+  .overlay {overflow-y: auto;}
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+  font-size: 40px;
+  top: 15px;
+  right: 35px;
+  }
+span{
+position:fixed;
+top:2%;
+right:2%;
+color:white;
+z-index:999;
+display:block;
+}
+
+
+.container{
+height:160vh;
+}
+ .text-overlay {
+      position: absolute;
+      bottom: 0%;
+      left: 0;
+      width: 100%;
+height:700px;
+      padding: 20px;
+      box-sizing: border-box;
+      background: linear-gradient(rgba(0,0,0,0.01),rgba(0,0,0,0.8),rgba(0,0,0,1));
+      z-index: 2;
+    }
+.text-overlay h1{
+font-size:50px;
+}
+.text-overlay p{
+font-size:32px;
+}
+
+.mythology{
+background:orange;
+width:250px;
+border:1px solid white;
+border-radius:0 10px 10px 0;
+}
+.mythology h1{
+font-size:27px;
+position:relative;
+left:20px;
+}
+}
+  </style>
+</head>
+<body class="contentselect no-select">
+<div id="myNav" class="overlay">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+  <div class="overlay-content">
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Clients</a>
+    <a href="#">Contact</a>
+  </div>
+</div>
+<span style="font-size:42px;cursor:pointer" onclick="openNav()">&#9776;</span>
+<header id="main-header">
+<h1>YETI360</h1>
+<!--<img src="logo.png">-->
+<div class="navigation">
+<h3>About</h3>
+<h3>Blog</h3>
+<h3>Places</h3>
+</div>
+</header>
+<section id="main">
+<div class="container">
+  <div class="sticky-image"></div>
+  <div class="text-overlay">
+    <h1>Himachal Pradesh</h1>
+    <p>Himachal Pradesh, situated in the northern part of India, is a state of enchanting beauty, diverse landscapes, and rich cultural heritage. Here's an overview of the various aspects that make Himachal Pradesh a unique and captivating destination.
+
+</p>
+  </div>
+</div>
+<br>
+
+<br>
+<div class="mythology"><h1>Himachal</h1><h1>Mythology</h1></div>
+</section>
+</body>
+
+    <script>
+        document.addEventListener('scroll', function () {
+            var header = document.getElementById('main-header');
+            var scrollPosition = window.scrollY;
+
+            // Adjust the opacity based on scroll position
+            header.style.backgroundColor = 'rgba(0, 0, 0, ' + (0.7 - scrollPosition / 300) + ')';
+        });
+    </script>
+<script>
+function openNav() {
+  document.getElementById("myNav").style.height = "100%";
+}
+
+function closeNav() {
+  document.getElementById("myNav").style.height = "0%";
+}
+</script>
+</html>
